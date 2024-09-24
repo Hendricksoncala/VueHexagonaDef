@@ -28,13 +28,16 @@
                             </div>
                             <div class="section__social">
                                 <button><img src="./assets/img/Facebook.svg"></button>
-                                <button><img src="./assets/img/Google.svg"></button>
+                                <button @click="redirectToGoogle">
+                                    <img src="./assets/img/Google.svg" alt="Login with Google">
+                                </button>
                                 <button><img src="./assets/img/Apple.svg"></button>
                             </div>
                         </section>
                     </main>
                     <footer>
-                        <router-link to="Register" class=".footer-link" :class="{ active: $route.path === '/register' }">
+                        <router-link to="Register" class=".footer-link"
+                            :class="{ active: $route.path === '/register' }">
                             <span :class="{ active: $route.path === '/register' }">Don’t have an account? <b>Sign
                                     up</b></span>
                         </router-link>
@@ -61,7 +64,7 @@ const password = ref('');
 const handleSubmit = async () => {
     try {
         console.log(nick.value);
-        
+
         const response = await fetch('/api/users/login', {
             method: 'POST',
             headers: {
@@ -89,6 +92,10 @@ const handleSubmit = async () => {
 
     }
 };
+
+const redirectToGoogle = () => {
+      window.location.href = "/login/auth/google";
+    }
 
 </script>
 
@@ -224,6 +231,4 @@ footer {
     font-family: "Inter_18pt-SemiBold";
     font-size: 14px;
 }
-
-
 </style>
